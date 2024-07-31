@@ -5,10 +5,10 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export KUBECONFIG=/Users/kacpermajczak/kubeconfig
 
 ZSH_THEME="robbyrussell"
-plugins=( git docker aliases colorize cp )
+plugins=( git docker colorize cp )
 plugins+=( history history-substring-search httpie )
 plugins+=( alias-tips zsh-completions zsh-autosuggestions )
-plugins+=( zsh-syntax-highlighting terraform)
+plugins+=( zsh-syntax-highlighting terraform you-should-use zsh-bat)
 
 source $ZSH/oh-my-zsh.sh
 
