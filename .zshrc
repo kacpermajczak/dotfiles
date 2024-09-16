@@ -18,9 +18,18 @@ export LANG=en_US.UTF-8
 ## ALIAS
 alias c="clear"
 alias temp='/usr/bin/vcgencmd measure_temp'
+
+# lsd 
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update'
 
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(starship init zsh)"
 
 ## GIT
 GIT_AUTHOR_NAME="Kacper Majczak"
