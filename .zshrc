@@ -18,6 +18,7 @@ export LANG=en_US.UTF-8
 ## ALIAS
 alias c="clear"
 alias temp='/usr/bin/vcgencmd measure_temp'
+alias vim='nvim'
 
 # lsd 
 alias ls='lsd'
