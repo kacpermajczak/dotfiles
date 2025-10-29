@@ -6,14 +6,14 @@
 - clean: ['~']
 
 - link:
-    ~/.zshrc: .zshrc
-    ~/.gitconfig: .gitconfig
+    ~/.zprofile: .zprofile
     ~/.vimrc: .vimrc
-    ~/.ideavimrc: .ideavimrc
-    ~/.config/alacritty: .config/alacritty
-    ~/.config/git/ignore: .config/git/ignore
+    ~/.config/zsh: .config/zsh
+    ~/.config/vim: .config/vim
+    ~/.config/git: .config/git
     ~/.config/nvim: .config/nvim
-    ~/.config/tmux/tmux.conf.local: tmux/tmux.conf.local
+    ~/.config/alacritty: .config/alacritty
+    ~/.config/tmux: .config/tmux
 
 - shell:
   - [git submodule update --init --recursive, Installing/updating submodules]

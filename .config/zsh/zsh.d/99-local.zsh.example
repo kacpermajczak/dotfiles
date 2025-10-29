@@ -1,0 +1,16 @@
+# Local Machine-Specific Configuration
+# Copy this file to 99-local.zsh and customize for your machine
+# 99-local.zsh is gitignored and won't be committed
+
+# Example: Machine-specific paths
+# export PATH="$HOME/my-custom-path:$PATH"
+
+# Example: Machine-specific environment variables
+# export MY_CUSTOM_VAR="value"
+
+# Example: Machine-specific aliases
+# alias my-alias='some command'
+
+# Example: Work-specific configuration
+# export AWS_PROFILE="work"
+# export KUBECONFIG="$HOME/work/kubeconfig"

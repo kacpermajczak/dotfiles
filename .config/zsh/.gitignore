@@ -1,0 +1,2 @@
+# Ignore machine-specific local configuration
+zsh.d/99-local.zsh
