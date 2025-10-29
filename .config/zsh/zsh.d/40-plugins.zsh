@@ -11,7 +11,7 @@ plugins=(git docker colorize cp)
 plugins+=(history history-substring-search)
 
 # Command-line tools
-plugins+=(httpie terraform fzf)
+plugins+=(httpie terraform)
 
 # Shell enhancements
 plugins+=(alias-tips zsh-completions zsh-autosuggestions)
