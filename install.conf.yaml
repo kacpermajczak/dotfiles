@@ -11,6 +11,8 @@
     ~/.vimrc: .vimrc
     ~/.ideavimrc: .ideavimrc
     ~/.config/alacritty: .config/alacritty
+    ~/.config/git/ignore: .config/git/ignore
+    ~/.config/nvim: .config/nvim
     ~/.config/tmux/tmux.conf.local: tmux/tmux.conf.local
 
 - shell:
