@@ -1,0 +1,17 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ['~']
+
+- link:
+    ~/.zshrc: .zshrc
+    ~/.gitconfig: .gitconfig
+    ~/.vimrc: .vimrc
+    ~/.ideavimrc: .ideavimrc
+    ~/.config/alacritty: .config/alacritty
+    ~/.config/tmux/tmux.conf.local: tmux/tmux.conf.local
+
+- shell:
+  - [git submodule update --init --recursive, Installing/updating submodules]
