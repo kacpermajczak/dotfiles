@@ -14,6 +14,10 @@ source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
 
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 
 ## ALIAS
 alias c="clear"
@@ -63,3 +67,13 @@ setopt HIST_NO_STORE         # Don't store history commands
 setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
 
 plugins+=(fzf)
+
+s () {
+  local server
+  server=$(grep -E '^Host ' ~/.ssh/config | awk '{print $2}' | fzf)
+  if [[ -n $server ]]; then
+    ssh $server
+  fi
+}
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH=$PATH:$HOME/go/bin

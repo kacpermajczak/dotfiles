@@ -2,6 +2,39 @@ import = [
   "~/.config/alacritty/catppuccin-mocha.toml"
 ]
 
+[selection]
+save_to_clipboard = true
+
+[cursor]
+# Default cursor (will be used in insert mode in vi mode)
+style = { shape = "Beam", blinking = "On" }
+
+# Vi mode cursor style (used in normal mode when vi mode is active)
+vi_mode_style = { shape = "Block", blinking = "Off" }
+
+# Blinking interval in milliseconds
+blink_interval = 750
+
+# Thickness of the beam cursor
+thickness = 0.15
+
+# Use unfocused hollow cursor
+unfocused_hollow = true
+
+[terminal]
+osc52 = "CopyPaste"
+
+[keyboard]
+bindings = [
+  # Enable vi mode
+  { key = "Space", mods = "Control", mode = "~Search", action = "ToggleViMode" },
+  # Shift+Enter for new line
+  { key = "Enter", mods = "Shift", chars = "\n" }
+]
+
+[window]
+option_as_alt = "Both"
+
 [env]
 TERM = "xterm-256color"
 
