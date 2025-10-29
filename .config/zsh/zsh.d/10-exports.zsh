@@ -11,6 +11,9 @@ export KUBECONFIG="$HOME/kubeconfig"
 # Locale
 export LANG=en_US.UTF-8
 
+# FZF (Fuzzy Finder)
+export FZF_BASE="/opt/homebrew/opt/fzf"
+
 # NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
