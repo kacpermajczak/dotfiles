@@ -1,3 +1,7 @@
+" XDG Base Directory support
+set runtimepath^=~/.config/vim
+set runtimepath+=~/.config/vim/after
+
 set scrolloff=8
 set number
 set nu rnu

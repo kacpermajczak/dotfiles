@@ -10,12 +10,25 @@ history.jsonl
 # Log files
 *.log
 
-# Debug files
+# Debug and runtime directories
 debug/
+agents/
+file-history/
+hooks/
+ide/
+plugins/
+projects/
+session-env/
+shell-snapshots/
 
-# Backup files (already in commands/ directory)
-*.backup
-
-# Session data
+# Session and cache data
 sessions/
 cache/
+.update.lock
+
+# Statusline stats (created by statusline.sh)
+statusline-stats/
+
+# Backup files (including in subdirectories)
+*.backup
+**/*.backup

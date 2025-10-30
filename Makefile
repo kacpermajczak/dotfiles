@@ -1,7 +1,7 @@
 # Dotfiles Makefile
 # Simplified commands for managing dotfiles and Homebrew packages
 
-.PHONY: help install update brew-install brew-check brew-update brew-cleanup git-status git-push clean
+.PHONY: help install update brew-install brew-check brew-update brew-cleanup git-status git-push clean claude-check
 
 # Colors for output
 BLUE := \033[0;34m
@@ -27,6 +27,9 @@ help:
 	@echo "$(GREEN)Git Operations:$(NC)"
 	@echo "  make git-status     - Show git status"
 	@echo "  make git-push       - Push all commits to origin"
+	@echo ""
+	@echo "$(GREEN)Verification:$(NC)"
+	@echo "  make claude-check   - Verify Claude Code installation and configuration"
 	@echo ""
 	@echo "$(GREEN)Maintenance:$(NC)"
 	@echo "  make clean          - Remove backup files and caches"
@@ -109,6 +112,24 @@ clean:
 	@rm -f .zshrc.backup
 	@rm -f Brewfile.lock.json
 	@echo "$(GREEN)✓ Cleanup completed$(NC)"
+
+## claude-check: Verify Claude Code installation and configuration
+claude-check:
+	@echo "$(BLUE)Checking Claude Code installation...$(NC)"
+	@if command -v claude >/dev/null 2>&1; then \
+		echo "$(GREEN)✓ Claude Code CLI installed$(NC)"; \
+		claude --version; \
+		echo ""; \
+		echo "$(BLUE)Checking configuration symlinks...$(NC)"; \
+		test -L ~/.claude/CLAUDE.md && echo "$(GREEN)✓ CLAUDE.md symlink$(NC)" || echo "$(RED)✗ Missing CLAUDE.md symlink$(NC)"; \
+		test -L ~/.claude/commands && echo "$(GREEN)✓ commands/ symlink$(NC)" || echo "$(RED)✗ Missing commands/ symlink$(NC)"; \
+		test -L ~/.claude/settings.json && echo "$(GREEN)✓ settings.json symlink$(NC)" || echo "$(RED)✗ Missing settings.json symlink$(NC)"; \
+		test -L ~/.claude/statusline.sh && echo "$(GREEN)✓ statusline.sh symlink$(NC)" || echo "$(RED)✗ Missing statusline.sh symlink$(NC)"; \
+	else \
+		echo "$(RED)✗ Claude Code not installed$(NC)"; \
+		echo "Run 'make install' to install from Brewfile"; \
+		exit 1; \
+	fi
 
 # Default target
 .DEFAULT_GOAL := help

@@ -52,6 +52,27 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 exec zsh
 ```
 
+### Verify Installation
+
+After installation, verify everything is working:
+
+```bash
+# Check Claude Code is installed
+claude --version
+
+# Check configuration symlinks
+ls -la ~/.claude/
+
+# Verify symlinks are created
+test -L ~/.claude/CLAUDE.md && echo "✓ CLAUDE.md linked" || echo "✗ CLAUDE.md missing"
+test -L ~/.claude/commands && echo "✓ commands/ linked" || echo "✗ commands/ missing"
+test -L ~/.claude/settings.json && echo "✓ settings.json linked" || echo "✗ settings.json missing"
+test -L ~/.claude/statusline.sh && echo "✓ statusline.sh linked" || echo "✗ statusline.sh missing"
+
+# Test shell alias
+cc --version
+```
+
 ## Makefile Commands
 
 For convenience, common operations are available via `make`:
@@ -102,8 +123,8 @@ make update         # Update everything
 │   ├── alacritty/          # Alacritty terminal config
 │   ├── claude/             # Claude Code AI assistant
 │   │   ├── CLAUDE.md       # Universal programming principles
-│   │   ├── CLAUDE.specflow.md  # Feature development workflow
 │   │   ├── settings.json   # Claude Code settings
+│   │   ├── statusline.sh   # Custom statusline script
 │   │   └── commands/       # Custom slash commands
 │   ├── git/
 │   │   ├── config          # Git configuration
@@ -232,18 +253,20 @@ Zsh configuration is split into numbered modules that load in order:
 
 - **Claude Code** - AI-powered coding assistant
   - Global instructions: `~/.claude/CLAUDE.md` (universal programming principles)
-  - Specflow toolkit: `~/.claude/CLAUDE.specflow.md` (feature development workflow)
   - Settings: `~/.claude/settings.json` (Claude Code configuration)
+  - Custom statusline: `~/.claude/statusline.sh` (session tracking, git status, mood assistant)
   - Custom commands: `~/.claude/commands/` (slash commands)
   - Installed automatically via Homebrew (`brew install --cask claude-code`)
-  - Shell aliases: `cc` (claude), `ccplan` (/specflow-plan), `cclist` (/specflow-list)
+  - Shell alias: `cc` (shortcut for `claude`)
 
-**Claude Code Features:**
-- Specification-driven development with `/specflow-*` commands
-- Parallel feature development using git worktrees
-- Custom slash commands for project-specific workflows
-- Automated commit message generation
-- SEO auditing, Sentry debugging, Playwright testing integration
+**Available Custom Commands:**
+- `/astro-help` - Astro framework documentation help
+- `/changelog` - Generate changelog from git tags
+- `/commit-msg` - Automated SRP-compliant commit generation
+- `/debug-sentry` - Sentry error analysis and debugging
+- `/go` - Enhanced code generation with systematic approach
+- `/seo-audit` - Comprehensive SEO and usability audit
+- `/test-web` - Playwright E2E testing and browser automation
 
 ## Updating
 

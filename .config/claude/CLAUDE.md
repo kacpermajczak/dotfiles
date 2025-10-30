@@ -45,5 +45,3 @@
 - Use proper cleanup patterns (defer in Go, cleanup in useEffect)
 - Prevent memory leaks and resource exhaustion
 - Handle cancellation and timeouts appropriately
-# Claude Specflow - Feature Development
-@CLAUDE.specflow.md
