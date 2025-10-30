@@ -35,20 +35,13 @@ cd ~/.dotfiles
 
 This will:
 1. Create symlinks for all configuration files
-2. Install Homebrew packages from `Brewfile`
+2. Install Homebrew packages from `Brewfile` (including zoxide)
 3. Initialize git submodules (Dotbot)
+4. Install Oh-My-Zsh and required plugins automatically
+5. Set up shell enhancements (zoxide, fzf)
 
-### Post-Installation
-
+After installation completes, restart your terminal:
 ```bash
-# Install Oh-My-Zsh (required for zsh config)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Install Oh-My-Zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-# Restart shell
 exec zsh
 ```
 
@@ -166,7 +159,7 @@ All Homebrew packages are declaratively managed in `Brewfile`.
 - **DevOps/Cloud**: Docker, Kubernetes (kubectl, k9s, helm)
 - **AI Tools**: Claude Code (Homebrew cask)
 - **CLI Utilities**: bat, fzf, ripgrep, lsd, fd, tree, visidata, csvlens
-- **Shell/Terminal**: tmux, neovim
+- **Shell/Terminal**: tmux, zoxide, neovim
 - **Security**: nmap
 - **Network**: openfortivpn (VPN), lazyssh (SSH manager)
 - **Monitoring**: glances, htop
