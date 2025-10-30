@@ -52,6 +52,48 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 exec zsh
 ```
 
+## Makefile Commands
+
+For convenience, common operations are available via `make`:
+
+```bash
+# Show all available commands
+make help
+
+# Install/update dotfiles
+make install
+
+# Pull latest changes and reinstall
+make update
+
+# Install Homebrew packages
+make brew-install
+
+# Check what packages are missing
+make brew-check
+
+# Update Brewfile after installing new packages
+make brew-update
+
+# Remove packages not in Brewfile
+make brew-cleanup
+
+# Git operations
+make git-status
+make git-push
+
+# Clean up backup files
+make clean
+```
+
+**Most used commands:**
+```bash
+make install        # Setup dotfiles
+make brew-check     # Check package status
+make brew-update    # Update Brewfile after `brew install`
+make update         # Update everything
+```
+
 ## Structure
 
 ```
@@ -78,6 +120,8 @@ exec zsh
 │           ├── 60-history.zsh
 │           └── 99-local.zsh.example
 ├── Brewfile                # Homebrew packages
+├── Makefile                # Simplified commands
+├── README.md               # This file
 ├── .gitignore
 ├── .vimrc                  # Vim wrapper (XDG compatibility)
 ├── .zprofile               # Zsh bootstrap (sets ZDOTDIR)
@@ -101,6 +145,14 @@ All Homebrew packages are declaratively managed in `Brewfile`.
 
 ### Brewfile Commands
 
+**Easy way (using Makefile):**
+```bash
+make brew-install    # Install all packages
+make brew-check      # Check what's missing
+make brew-update     # Update Brewfile
+```
+
+**Direct brew commands:**
 ```bash
 # Install all packages
 brew bundle --file=~/.dotfiles/Brewfile
