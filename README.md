@@ -136,12 +136,14 @@ All Homebrew packages are declaratively managed in `Brewfile`.
 
 ### Package Categories
 
-- **Development Tools**: Go, Node.js, PHP, Python, Java, Bun
-- **DevOps/Cloud**: ArgoCD, AWS CLI, Docker, Terraform, Vault, Kubernetes tools
-- **CLI Utilities**: bat, fzf, ripgrep, lsd, fd, tree, visidata
-- **Shell/Terminal**: starship, tmux, neovim
-- **Security**: mkcert, nmap, sshpass
-- **Applications**: Alacritty, Docker Desktop, Postman, Raycast, Spotify
+- **Development Tools**: Go, Node.js, PHP, Python
+- **DevOps/Cloud**: Docker, Kubernetes (kubectl, k9s, helm)
+- **CLI Utilities**: bat, fzf, ripgrep, lsd, fd, tree, visidata, csvlens
+- **Shell/Terminal**: tmux, neovim
+- **Security**: nmap
+- **Network**: openfortivpn (VPN), lazyssh (SSH manager)
+- **Monitoring**: glances, htop
+- **Applications**: Alacritty, Docker Desktop, Raycast, Discord, Spotify, LibreOffice
 
 ### Brewfile Commands
 
@@ -192,7 +194,7 @@ Zsh configuration is split into numbered modules that load in order:
 - `20-aliases.zsh` - Command aliases
 - `30-functions.zsh` - Custom functions (SSH fuzzy search)
 - `40-plugins.zsh` - Oh-My-Zsh plugins
-- `50-tools.zsh` - External tools (FZF, zoxide, starship)
+- `50-tools.zsh` - External tools (FZF, zoxide)
 - `60-history.zsh` - Shell history configuration
 - `99-local.zsh` - Machine-specific overrides (gitignored)
 
@@ -202,7 +204,6 @@ Zsh configuration is split into numbered modules that load in order:
 
 - **Alacritty** - GPU-accelerated terminal
 - **Tmux** - Terminal multiplexer
-- **Starship** - Cross-shell prompt
 
 ### Shell Enhancements
 
