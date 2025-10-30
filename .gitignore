@@ -3,3 +3,7 @@ Brewfile.lock.json
 
 # Machine-specific zsh config
 .config/zsh/zsh.d/99-local.zsh
+
+# Backup files
+*.backup
+.zshrc.backup
