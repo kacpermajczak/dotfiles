@@ -22,7 +22,7 @@ brew "go"                           # Go programming language
 brew "node"                         # Node.js JavaScript runtime
 brew "nvm"                          # Node Version Manager
 brew "php"                          # PHP scripting language
-brew "python@3.12"                  # Python 3.12
+brew "python3"                      # Python (latest stable)
 brew "uv"                           # Fast Python package installer
 
 # ========================================
@@ -96,9 +96,11 @@ cask "docker-desktop"               # Docker Desktop for Mac
 
 # Productivity
 cask "raycast"                      # Control your tools with keystrokes
+cask "google-chrome"                # Google Chrome web browser
 
 # Communication
 cask "discord"                      # Voice and text chat software
+cask "telegram"                     # Cloud-based instant messaging
 
 # Utilities
 cask "monitorcontrol"               # Control external monitor brightness
