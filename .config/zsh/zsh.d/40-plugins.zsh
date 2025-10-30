@@ -1,5 +1,11 @@
 # Oh-My-Zsh Configuration
 
+# Check if Oh-My-Zsh is installed
+if [[ ! -d "$ZSH" ]]; then
+  echo "⚠️  Oh-My-Zsh not found. Install with: sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+  return
+fi
+
 # Theme
 ZSH_THEME="robbyrussell"
 
