@@ -1,0 +1,5 @@
+# Brewfile lock file (not needed in version control)
+Brewfile.lock.json
+
+# Machine-specific zsh config
+.config/zsh/zsh.d/99-local.zsh

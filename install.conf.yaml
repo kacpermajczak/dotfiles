@@ -17,3 +17,15 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing/updating submodules]
+  -
+    command: |
+      if command -v brew >/dev/null 2>&1; then
+        echo "Installing Homebrew packages from Brewfile..."
+        brew bundle --file="$HOME/.dotfiles/Brewfile" --no-lock
+      else
+        echo "Homebrew not installed, skipping bundle installation"
+        echo "Install Homebrew first: https://brew.sh"
+      fi
+    description: Installing Homebrew packages
+    stdin: true
+    stdout: true

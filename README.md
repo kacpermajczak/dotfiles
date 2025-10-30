@@ -1,0 +1,226 @@
+# Dotfiles
+
+Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot) following XDG Base Directory specification.
+
+## Features
+
+- ✨ **XDG Compliant** - All configs in `~/.config/`
+- 🧩 **Modular Zsh** - Organized in `zsh.d/` for easy maintenance
+- 📦 **Declarative Packages** - Homebrew packages in `Brewfile`
+- 🔧 **Automated Setup** - One command installation with Dotbot
+- 🎨 **Consistent Theme** - Catppuccin Mocha across all tools
+
+## Quick Start
+
+### Prerequisites
+
+```bash
+# Install Xcode Command Line Tools
+xcode-select --install
+
+# Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Installation
+
+```bash
+# Clone dotfiles
+git clone https://github.com/kacpermajczak/dotfiles.git ~/.dotfiles
+
+# Run installation
+cd ~/.dotfiles
+./install
+```
+
+This will:
+1. Create symlinks for all configuration files
+2. Install Homebrew packages from `Brewfile`
+3. Initialize git submodules (Dotbot)
+
+### Post-Installation
+
+```bash
+# Install Oh-My-Zsh (required for zsh config)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install Oh-My-Zsh plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# Restart shell
+exec zsh
+```
+
+## Structure
+
+```
+~/.dotfiles/
+├── .config/
+│   ├── alacritty/          # Alacritty terminal config
+│   ├── git/
+│   │   ├── config          # Git configuration
+│   │   └── ignore          # Global gitignore
+│   ├── nvim/               # Neovim (LazyVim) config
+│   ├── tmux/               # Tmux configuration
+│   ├── vim/
+│   │   ├── vimrc           # Vim configuration
+│   │   └── ideavimrc       # IdeaVim configuration
+│   └── zsh/
+│       ├── .zshrc          # Zsh loader
+│       └── zsh.d/          # Modular zsh config
+│           ├── 00-path.zsh
+│           ├── 10-exports.zsh
+│           ├── 20-aliases.zsh
+│           ├── 30-functions.zsh
+│           ├── 40-plugins.zsh
+│           ├── 50-tools.zsh
+│           ├── 60-history.zsh
+│           └── 99-local.zsh.example
+├── Brewfile                # Homebrew packages
+├── .gitignore
+├── .vimrc                  # Vim wrapper (XDG compatibility)
+├── .zprofile               # Zsh bootstrap (sets ZDOTDIR)
+├── dotbot/                 # Dotbot submodule
+├── install*                # Installation script
+└── install.conf.yaml       # Dotbot configuration
+```
+
+## Homebrew Package Management
+
+All Homebrew packages are declaratively managed in `Brewfile`.
+
+### Package Categories
+
+- **Development Tools**: Go, Node.js, PHP, Python, Java, Bun
+- **DevOps/Cloud**: ArgoCD, AWS CLI, Docker, Terraform, Vault, Kubernetes tools
+- **CLI Utilities**: bat, fzf, ripgrep, lsd, fd, tree, visidata
+- **Shell/Terminal**: starship, tmux, neovim
+- **Security**: mkcert, nmap, sshpass
+- **Applications**: Alacritty, Docker Desktop, Postman, Raycast, Spotify
+
+### Brewfile Commands
+
+```bash
+# Install all packages
+brew bundle --file=~/.dotfiles/Brewfile
+
+# Check what's missing
+brew bundle check --file=~/.dotfiles/Brewfile
+
+# Update Brewfile after installing new packages
+cd ~/.dotfiles
+brew bundle dump --force
+git add Brewfile
+git commit -m "Update Brewfile"
+```
+
+## Configuration
+
+### Machine-Specific Settings
+
+Create `~/.config/zsh/zsh.d/99-local.zsh` for machine-specific configuration:
+
+```bash
+# Copy example file
+cp ~/.config/zsh/zsh.d/99-local.zsh.example ~/.config/zsh/zsh.d/99-local.zsh
+
+# Edit for this machine
+vim ~/.config/zsh/zsh.d/99-local.zsh
+```
+
+This file is gitignored and won't be committed.
+
+### Modular Zsh Configuration
+
+Zsh configuration is split into numbered modules that load in order:
+
+- `00-path.zsh` - PATH management with deduplication
+- `10-exports.zsh` - Environment variables
+- `20-aliases.zsh` - Command aliases
+- `30-functions.zsh` - Custom functions (SSH fuzzy search)
+- `40-plugins.zsh` - Oh-My-Zsh plugins
+- `50-tools.zsh` - External tools (FZF, zoxide, starship)
+- `60-history.zsh` - Shell history configuration
+- `99-local.zsh` - Machine-specific overrides (gitignored)
+
+## Key Tools
+
+### Terminal
+
+- **Alacritty** - GPU-accelerated terminal
+- **Tmux** - Terminal multiplexer
+- **Starship** - Cross-shell prompt
+
+### Shell Enhancements
+
+- **FZF** - Fuzzy finder (installed via Homebrew)
+- **Zoxide** - Smarter cd command
+- **lsd** - Modern ls with icons
+
+### Editors
+
+- **Neovim** - LazyVim configuration
+- **Vim** - Classic vim with plugins
+
+### Development
+
+- **Git** - Version control with diff-so-fancy
+- **Docker** - Containerization
+- **Node.js** - JavaScript runtime with nvm
+
+## Updating
+
+### Update Dotfiles
+
+```bash
+cd ~/.dotfiles
+git pull origin main
+./install
+```
+
+### Update Homebrew Packages
+
+```bash
+brew update
+brew upgrade
+brew bundle check --file=~/.dotfiles/Brewfile
+```
+
+### Update Zsh Plugins
+
+```bash
+cd ~/.oh-my-zsh
+git pull
+```
+
+## Troubleshooting
+
+### Oh-My-Zsh Plugin Not Found
+
+```bash
+# Install missing plugins
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
+```
+
+### FZF Not Working
+
+FZF is installed via Homebrew and sourced in `50-tools.zsh`. If it's not working:
+
+```bash
+brew install fzf
+```
+
+### Path Issues
+
+Check PATH order in `00-path.zsh`. It uses `typeset -U` to automatically remove duplicates.
+
+## License
+
+MIT
+
+## Credits
+
+- [Dotbot](https://github.com/anishathalye/dotbot) - Dotfile management
+- [Oh-My-Zsh](https://ohmyz.sh/) - Zsh framework
+- [Catppuccin](https://github.com/catppuccin) - Color scheme
