@@ -12,12 +12,14 @@
 # Custom Taps
 # ========================================
 tap "adembc/tap"
+tap "oven-sh/bun"
 
 # ========================================
 # Development Tools
 # ========================================
 
 # Programming Languages & Runtimes
+brew "bun"                          # Fast JavaScript runtime & toolkit
 brew "go"                           # Go programming language
 brew "node"                         # Node.js JavaScript runtime
 brew "nvm"                          # Node Version Manager
@@ -37,6 +39,7 @@ brew "kubernetes-cli"               # kubectl command line tool
 # CLI Utilities
 # ========================================
 brew "bat"                          # Cat clone with syntax highlighting
+brew "ccusage"                      # Claude Code usage tracking
 brew "csvlens"                      # Command-line csv viewer
 brew "curl"                         # Get a file from HTTP/HTTPS/FTP server
 brew "diff-so-fancy"                # Good-lookin' diffs
@@ -51,6 +54,7 @@ brew "visidata"                     # Terminal spreadsheet multitool
 # Shell & Terminal
 # ========================================
 brew "tmux"                         # Terminal multiplexer
+brew "zoxide"                       # Smarter cd command
 
 # ========================================
 # Text Editors
