@@ -25,7 +25,7 @@
     command: |
       if command -v brew >/dev/null 2>&1; then
         echo "Installing Homebrew packages from Brewfile..."
-        brew bundle --file="$HOME/.dotfiles/Brewfile" --no-lock
+        brew bundle --file="$HOME/.dotfiles/Brewfile"
 
         # Verify critical installations
         echo ""
