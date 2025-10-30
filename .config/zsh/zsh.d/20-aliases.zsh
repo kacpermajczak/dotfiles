@@ -16,3 +16,8 @@ alias lt='ls --tree'
 
 # System update (macOS + Homebrew + npm + gems)
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update'
+
+# Claude Code
+alias cc='claude'
+alias ccplan='claude /specflow-plan'
+alias cclist='claude /specflow-list'

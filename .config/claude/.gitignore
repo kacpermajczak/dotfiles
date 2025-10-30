@@ -1,0 +1,21 @@
+# Claude Code runtime files
+# These files should not be tracked in version control
+
+# Local settings (machine-specific, contains permissions)
+settings.local.json
+
+# Command history
+history.jsonl
+
+# Log files
+*.log
+
+# Debug files
+debug/
+
+# Backup files (already in commands/ directory)
+*.backup
+
+# Session data
+sessions/
+cache/

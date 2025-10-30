@@ -100,6 +100,11 @@ make update         # Update everything
 ~/.dotfiles/
 ├── .config/
 │   ├── alacritty/          # Alacritty terminal config
+│   ├── claude/             # Claude Code AI assistant
+│   │   ├── CLAUDE.md       # Universal programming principles
+│   │   ├── CLAUDE.specflow.md  # Feature development workflow
+│   │   ├── settings.json   # Claude Code settings
+│   │   └── commands/       # Custom slash commands
 │   ├── git/
 │   │   ├── config          # Git configuration
 │   │   └── ignore          # Global gitignore
@@ -138,6 +143,7 @@ All Homebrew packages are declaratively managed in `Brewfile`.
 
 - **Development Tools**: Go, Node.js, PHP, Python
 - **DevOps/Cloud**: Docker, Kubernetes (kubectl, k9s, helm)
+- **AI Tools**: Claude Code (installed via npm)
 - **CLI Utilities**: bat, fzf, ripgrep, lsd, fd, tree, visidata, csvlens
 - **Shell/Terminal**: tmux, neovim
 - **Security**: nmap
@@ -221,6 +227,23 @@ Zsh configuration is split into numbered modules that load in order:
 - **Git** - Version control with diff-so-fancy
 - **Docker** - Containerization
 - **Node.js** - JavaScript runtime with nvm
+
+### AI Development
+
+- **Claude Code** - AI-powered coding assistant
+  - Global instructions: `~/.claude/CLAUDE.md` (universal programming principles)
+  - Specflow toolkit: `~/.claude/CLAUDE.specflow.md` (feature development workflow)
+  - Settings: `~/.claude/settings.json` (Claude Code configuration)
+  - Custom commands: `~/.claude/commands/` (slash commands)
+  - Installed automatically via npm during setup
+  - Shell aliases: `cc` (claude), `ccplan` (/specflow-plan), `cclist` (/specflow-list)
+
+**Claude Code Features:**
+- Specification-driven development with `/specflow-*` commands
+- Parallel feature development using git worktrees
+- Custom slash commands for project-specific workflows
+- Automated commit message generation
+- SEO auditing, Sentry debugging, Playwright testing integration
 
 ## Updating
 
