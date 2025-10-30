@@ -33,15 +33,3 @@
     description: Installing Homebrew packages
     stdin: true
     stdout: true
-  -
-    command: |
-      if command -v npm >/dev/null 2>&1; then
-        echo "Installing Claude Code CLI..."
-        npm install -g @anthropic-ai/claude-code
-      else
-        echo "npm not installed, skipping Claude Code installation"
-        echo "Install Node.js first: brew install node"
-      fi
-    description: Installing Claude Code CLI
-    stdin: true
-    stdout: true

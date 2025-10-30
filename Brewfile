@@ -58,13 +58,6 @@ brew "tmux"                         # Terminal multiplexer
 brew "neovim"                       # Vim-based text editor
 
 # ========================================
-# AI Development Tools
-# ========================================
-# Note: Claude Code CLI is installed via npm (not available as brew package)
-# Installation handled automatically by dotfiles setup
-# Manual install: npm install -g @anthropic-ai/claude-code
-
-# ========================================
 # Version Control
 # ========================================
 brew "git"                          # Distributed version control system
@@ -98,6 +91,7 @@ brew "adembc/tap/lazyssh"           # SSH connection manager
 cask "alacritty"                    # GPU-accelerated terminal emulator
 
 # Development
+cask "claude-code"                  # AI-powered coding assistant
 cask "docker-desktop"               # Docker Desktop for Mac
 
 # Productivity

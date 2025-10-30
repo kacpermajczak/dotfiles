@@ -143,7 +143,7 @@ All Homebrew packages are declaratively managed in `Brewfile`.
 
 - **Development Tools**: Go, Node.js, PHP, Python
 - **DevOps/Cloud**: Docker, Kubernetes (kubectl, k9s, helm)
-- **AI Tools**: Claude Code (installed via npm)
+- **AI Tools**: Claude Code (Homebrew cask)
 - **CLI Utilities**: bat, fzf, ripgrep, lsd, fd, tree, visidata, csvlens
 - **Shell/Terminal**: tmux, neovim
 - **Security**: nmap
@@ -235,7 +235,7 @@ Zsh configuration is split into numbered modules that load in order:
   - Specflow toolkit: `~/.claude/CLAUDE.specflow.md` (feature development workflow)
   - Settings: `~/.claude/settings.json` (Claude Code configuration)
   - Custom commands: `~/.claude/commands/` (slash commands)
-  - Installed automatically via npm during setup
+  - Installed automatically via Homebrew (`brew install --cask claude-code`)
   - Shell aliases: `cc` (claude), `ccplan` (/specflow-plan), `cclist` (/specflow-list)
 
 **Claude Code Features:**
