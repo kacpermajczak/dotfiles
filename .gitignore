@@ -4,6 +4,10 @@ Brewfile.lock.json
 # Machine-specific zsh config
 .config/zsh/zsh.d/99-local.zsh
 
+# Oh-My-Zsh generated files
+.config/zsh/.zcompdump*
+.config/zsh/.zshrc.pre-oh-my-zsh
+
 # Backup files
 *.backup
 .zshrc.backup
