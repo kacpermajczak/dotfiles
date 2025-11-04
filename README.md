@@ -45,6 +45,14 @@ After installation completes, restart your terminal:
 exec zsh
 ```
 
+**Note:** Oh-My-Zsh and its custom plugins are automatically installed by the install script. The following 6 plugins are required by the zsh configuration in `.config/zsh/zsh.d/40-plugins.zsh`:
+- alias-tips
+- you-should-use
+- zsh-autosuggestions
+- zsh-bat
+- zsh-completions
+- zsh-syntax-highlighting
+
 ### Verify Installation
 
 After installation, verify everything is working:

@@ -34,6 +34,7 @@ brew "docker"                       # Container platform
 brew "helm"                         # Kubernetes package manager
 brew "k9s"                          # Kubernetes CLI management tool
 brew "kubernetes-cli"               # kubectl command line tool
+brew "sentry-cli"                   # Sentry command line client
 
 # ========================================
 # CLI Utilities
