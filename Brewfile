@@ -26,6 +26,7 @@ brew "nvm"                          # Node Version Manager
 brew "php"                          # PHP scripting language
 brew "python3"                      # Python (latest stable)
 brew "uv"                           # Fast Python package installer
+brew "angular-cli"                  # CLI tool for Angular
 
 # ========================================
 # DevOps & Cloud Tools
@@ -98,6 +99,7 @@ cask "alacritty"                    # GPU-accelerated terminal emulator
 # Development
 cask "claude-code"                  # AI-powered coding assistant
 cask "docker-desktop"               # Docker Desktop for Mac
+cask "webstorm"                     # JavaScript and TypeScript IDE
 
 # Productivity
 cask "raycast"                      # Control your tools with keystrokes
@@ -106,6 +108,7 @@ cask "google-chrome"                # Google Chrome web browser
 # Communication
 cask "discord"                      # Voice and text chat software
 cask "telegram"                     # Cloud-based instant messaging
+cask "whatsapp"                     # Messaging app
 
 # Utilities
 cask "monitorcontrol"               # Control external monitor brightness
