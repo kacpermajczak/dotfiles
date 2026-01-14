@@ -1,5 +1,5 @@
 - try to avoid using setTimeout
-- uzywaj playwright mcp  do testowania strony
+- uzywaj chrome-devtools mcp do testowania strony
 - use Animate UI (https://animate-ui.com/) instead of regular shadcn for UI components
 
 ## Universal Programming Principles

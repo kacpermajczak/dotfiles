@@ -2,6 +2,7 @@
 description: "Automatically create SRP-compliant commits for uncommitted changes"
 argument-hint: "optional: --dry-run to preview, --push to push after commits"
 allowed-tools: ["*"]
+model: "haiku"
 ---
 
 # Auto Commit with SRP
