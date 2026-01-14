@@ -31,6 +31,7 @@ brew "angular-cli"                  # CLI tool for Angular
 # ========================================
 # DevOps & Cloud Tools
 # ========================================
+brew "argocd"                       # GitOps continuous delivery for Kubernetes
 brew "docker"                       # Container platform
 brew "helm"                         # Kubernetes package manager
 brew "k9s"                          # Kubernetes CLI management tool
@@ -100,6 +101,7 @@ cask "alacritty"                    # GPU-accelerated terminal emulator
 cask "claude-code"                  # AI-powered coding assistant
 cask "docker-desktop"               # Docker Desktop for Mac
 cask "webstorm"                     # JavaScript and TypeScript IDE
+cask "zed"                          # High-performance Rust-based code editor
 
 # Productivity
 cask "raycast"                      # Control your tools with keystrokes
@@ -111,6 +113,8 @@ cask "telegram"                     # Cloud-based instant messaging
 cask "whatsapp"                     # Messaging app
 
 # Utilities
+cask "insta360-link-controller"     # Insta360 Link webcam controller
+cask "keymapp"                      # ZSA keyboard configuration tool
 cask "monitorcontrol"               # Control external monitor brightness
 
 # Office
@@ -118,10 +122,12 @@ cask "libreoffice"                  # Free office suite
 
 # Fonts
 cask "font-hack-nerd-font"          # Hack Nerd Font
+cask "font-jetbrains-mono-nerd-font" # JetBrains Mono Nerd Font
 cask "font-meslo-lg-nerd-font"      # Meslo LG Nerd Font
 
 # Entertainment
 cask "spotify"                      # Music streaming service
+cask "vlc"                          # Free and open source media player
 
 # ========================================
 # Go Packages
