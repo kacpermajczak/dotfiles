@@ -135,6 +135,9 @@ make update         # Update everything
 │   ├── vim/
 │   │   ├── vimrc           # Vim configuration
 │   │   └── ideavimrc       # IdeaVim configuration
+│   ├── zed/
+│   │   ├── settings.json   # Zed editor config (Angular LSP, Vim mode)
+│   │   └── keymap.json     # Custom keybindings (Vim-style)
 │   └── zsh/
 │       ├── .zshrc          # Zsh loader
 │       └── zsh.d/          # Modular zsh config
@@ -163,7 +166,7 @@ All Homebrew packages are declaratively managed in `Brewfile`.
 
 ### Package Categories
 
-- **Development Tools**: Go, Node.js, PHP, Python
+- **Development Tools**: Go, Node.js, PHP, Python, Angular CLI
 - **DevOps/Cloud**: Docker, Kubernetes (kubectl, k9s, helm)
 - **AI Tools**: Claude Code (Homebrew cask)
 - **CLI Utilities**: bat, fzf, ripgrep, lsd, fd, tree, visidata, csvlens
@@ -171,7 +174,8 @@ All Homebrew packages are declaratively managed in `Brewfile`.
 - **Security**: nmap
 - **Network**: openfortivpn (VPN), lazyssh (SSH manager)
 - **Monitoring**: glances, htop
-- **Applications**: Alacritty, Docker Desktop, Raycast, Discord, Spotify, LibreOffice
+- **IDEs & Editors**: WebStorm, Zed
+- **Applications**: Alacritty, Docker Desktop, Raycast, Discord, Spotify, LibreOffice, WhatsApp
 
 ### Brewfile Commands
 
@@ -243,6 +247,40 @@ Zsh configuration is split into numbered modules that load in order:
 
 - **Neovim** - LazyVim configuration
 - **Vim** - Classic vim with plugins
+- **Zed** - High-performance Rust-based editor with Angular LSP support
+  - Configuration: `~/.config/zed/settings.json`, `~/.config/zed/keymap.json`
+  - After installation, install the Angular extension: `Cmd+Shift+P` > "extensions: install extensions" > search "angular"
+
+  **Features:**
+  - **Vim Mode** - Full modal editing with system clipboard integration
+  - **Angular/TypeScript** - Angular Language Server + TypeScript LSP with inlay hints
+  - **Auto-formatting** - ESLint auto-fix + Prettier on save (runs ESLint first, then Prettier)
+  - **Git Integration** - Git gutter, inline blame, hunk navigation
+  - **UI Enhancements** - Indent guides (indent_aware), relative line numbers, no scrollbar
+  - **Project Panel** - Auto-reveal active file in tree (auto_reveal_entries), panel on right side
+  - **Smart Search** - Excludes node_modules, .angular, dist for faster file finding
+
+  **Key Bindings (Vim Mode):**
+  - **Pane Navigation**: `Ctrl+h/j/k/l` - Navigate between editor panes
+  - **Buffer Navigation**: `Shift+h/l` - Switch between tabs
+  - **Leader Key** (`Space`):
+    - `Space Space` - File finder
+    - `Space f p` - Recent projects
+    - `Space c a` - Code actions
+    - `Space c r` - Rename symbol
+    - `Space g h` - Toggle git hunk diff
+    - `Space g b` - Toggle git blame
+  - **LSP Navigation**:
+    - `g d` - Go to definition
+    - `g r` - Find all references
+    - `] d` / `[ d` - Next/previous diagnostic
+    - `K` - Hover documentation
+  - **Git Hunks**: `] h` / `[ h` - Next/previous hunk
+  - **Vim Extras**:
+    - `s` / `S` - Sneak (two-character search)
+    - `w/b/e` - Subword motion (camelCase-aware)
+    - Visual `S` - Surround selection
+    - Visual `g c` - Toggle comments
 
 ### Development
 
