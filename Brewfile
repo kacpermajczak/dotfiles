@@ -13,6 +13,7 @@
 # ========================================
 tap "adembc/tap"
 tap "oven-sh/bun"
+tap "kacper/casks", "#{Dir.home}/.dotfiles/homebrew-casks"
 
 # ========================================
 # Development Tools
@@ -96,6 +97,7 @@ brew "adembc/tap/lazyssh"           # SSH connection manager
 
 # Terminal
 cask "alacritty"                    # GPU-accelerated terminal emulator
+cask "ghostty"                      # Fast, native terminal emulator
 
 # Development
 cask "claude-code"                  # AI-powered coding assistant
@@ -115,7 +117,11 @@ cask "whatsapp"                     # Messaging app
 # Utilities
 cask "insta360-link-controller"     # Insta360 Link webcam controller
 cask "keymapp"                      # ZSA keyboard configuration tool
+cask "betterdisplay"                # Display management and resolution control
 cask "monitorcontrol"               # Control external monitor brightness
+
+# Printers
+cask "samsung-printer-driver"       # Samsung Universal Print Driver (C410, C43x, M2020)
 
 # Office
 cask "libreoffice"                  # Free office suite
