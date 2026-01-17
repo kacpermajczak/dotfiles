@@ -14,6 +14,7 @@
     ~/.config/git: .config/git
     ~/.config/nvim: .config/nvim
     ~/.config/alacritty: .config/alacritty
+    ~/.config/ghostty: .config/ghostty
     ~/.config/tmux: .config/tmux
     ~/.config/zed: .config/zed
     ~/.claude/CLAUDE.md: .config/claude/CLAUDE.md
@@ -23,6 +24,16 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing/updating submodules]
+  -
+    command: |
+      if [ -d "$HOME/.dotfiles/homebrew-casks" ] && [ ! -d "$HOME/.dotfiles/homebrew-casks/.git" ]; then
+        echo "Initializing local Homebrew tap..."
+        cd "$HOME/.dotfiles/homebrew-casks"
+        git init -q && git add . && git commit -q -m "Local Homebrew casks"
+        echo "✓ Local Homebrew tap initialized"
+      fi
+    description: Initialize local Homebrew tap
+    stdout: true
   -
     command: |
       if command -v brew >/dev/null 2>&1; then
