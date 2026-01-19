@@ -51,6 +51,7 @@ brew "fd"                           # Simple, fast alternative to find
 brew "fzf"                          # Fuzzy finder
 brew "lsd"                          # Modern ls with colors and icons
 brew "ripgrep"                      # Fast grep alternative (rg)
+brew "yq"                           # YAML processor
 brew "tree"                         # Display directories as trees
 brew "visidata"                     # Terminal spreadsheet multitool
 
