@@ -18,7 +18,7 @@ install_homebrew_packages() {
   command -v brew >/dev/null 2>&1 || { echo "Homebrew not installed"; return; }
 
   echo "Installing Homebrew packages..."
-  brew bundle --file="$DOTFILES_DIR/Brewfile"
+  brew bundle --file="$DOTFILES_DIR/Brewfile" || echo "⚠ Some Homebrew packages failed to install"
 
   if command -v claude >/dev/null 2>&1; then
     echo "✓ Claude Code installed"
@@ -39,8 +39,8 @@ install_zsh_plugins() {
   local zsh_custom="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
   local config_file="$DOTFILES_DIR/config/zsh-plugins.yaml"
 
-  [ ! -f "$config_file" ] && { echo "Error: $config_file not found"; exit 1; }
-  command -v yq >/dev/null 2>&1 || { echo "Error: yq is required but not installed"; exit 1; }
+  [ ! -f "$config_file" ] && { echo "⚠ $config_file not found, skipping zsh plugins"; return; }
+  command -v yq >/dev/null 2>&1 || { echo "⚠ yq not installed, skipping zsh plugins"; return; }
 
   yq -r '.plugins | to_entries[] | "\(.key) \(.value)"' "$config_file" | while read -r name url; do
     [ ! -d "$zsh_custom/plugins/$name" ] && git clone -q "$url" "$zsh_custom/plugins/$name"
