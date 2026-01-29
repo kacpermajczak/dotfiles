@@ -18,10 +18,6 @@ Brewfile.lock.json
 .config/claude/**/*.backup
 .config/claude/statusline-stats/
 
-# Zed editor config (machine-specific)
-.config/zed/
-
 # Zsh history and tmux runtime files (machine-specific)
 .config/zsh/.zsh_history
 .config/tmux/plugins/
-.config/tmux/scripts/
