@@ -11,6 +11,10 @@ Brewfile.lock.json
 # Backup files
 *.backup
 .zshrc.backup
+*_backup.json
+
+# Zed runtime/generated files
+.config/zed/prompts/
 
 # Claude Code runtime files (if accidentally created in dotfiles directory)
 .config/claude/settings.local.json
