@@ -163,7 +163,8 @@ source -F ~/.config/tmux/scripts/ram.conf
 set -g status-right-length 150
 set -g status-left-length 100
 set -g status-left ""
-set -g status-right "#{E:@catppuccin_status_session}"
+set -g status-right "#{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} "
+set -ag status-right "#{E:@catppuccin_status_session}"
 set -agF status-right "#{E:@catppuccin_status_cpu}"
 set -agF status-right "#{E:@catppuccin_status_ram}"
 set -ag status-right "#{E:@catppuccin_status_date_time}"
