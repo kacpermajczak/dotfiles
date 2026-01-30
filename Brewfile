@@ -120,6 +120,7 @@ cask "insta360-link-controller"     # Insta360 Link webcam controller
 cask "keymapp"                      # ZSA keyboard configuration tool
 cask "betterdisplay"                # Display management and resolution control
 cask "monitorcontrol"               # Control external monitor brightness
+cask "rectangle"                    # Window management with keyboard shortcuts
 
 # Printers
 cask "samsung-printer-driver"       # Samsung Universal Print Driver (C410, C43x, M2020)
