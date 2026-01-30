@@ -1,0 +1,236 @@
+{
+  // Theme and UI
+  "show_signature_help_after_edits": true,
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "helix_mode": false,
+  "disable_ai": true,
+  "agent": {
+    "button": true,
+    "model_parameters": []
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "button": false
+  },
+  "base_keymap": "JetBrains",
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "theme": "Catppuccin Macchiato",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_size": 14,
+  "ui_font_size": 16,
+
+  // Vim Mode Configuration
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true
+  },
+  "relative_line_numbers": "enabled",
+  "cursor_blink": false,
+
+  // Editor behavior
+  "tab_size": 2,
+  "hard_tabs": false,
+  "format_on_save": "on",
+  "enable_language_server": true,
+  "auto_signature_help": false,
+  "show_completion_documentation": true,
+  "linked_edits": true,
+  "use_autoclose": true,
+  "soft_wrap": "preferred_line_length",
+  "preferred_line_length": 100,
+  "show_whitespaces": "selection",
+
+  // Command aliases for common Vim typos
+  "command_aliases": {
+    "W": "w",
+    "Wq": "wq",
+    "Q": "q"
+  },
+
+  // UI Configuration
+  "scrollbar": {
+    "show": "never"
+  },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "project_panel": {
+    "default_width": 250.0,
+    "dock": "right",
+    "auto_reveal_entries": true
+  },
+
+  // Search Configuration
+  "search": {
+    "whole_word": false,
+    "case_sensitive": false
+  },
+
+  // Git Integration
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+
+  // File Exclusions for faster search
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/node_modules",
+    "**/.angular",
+    "**/dist",
+    "**/build",
+    "**/.next",
+    "**/.turbo",
+    "**/.vscode"
+  ],
+
+  // Terminal Configuration
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font",
+    "font_size": 14,
+    "line_height": "comfortable",
+    "working_directory": "current_project_directory",
+    "detect_venv": {
+      "on": {
+        "directories": [".venv", "venv", "env"],
+        "activate_script": "default"
+      }
+    }
+  },
+
+  // Telemetry
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  // Inlay hints for better type information
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": false
+  },
+
+  // Language Server Protocol configuration
+  "lsp": {
+    // Angular Language Server (requires manual extension installation)
+    // Install via: Cmd+Shift+P > "extensions: install extensions" > search "angular"
+    "angular": {
+      "initialization_options": {
+        "angular_language_server_version": "21.0",
+        "typescript_version": "5.9"
+      }
+    },
+    // TypeScript Language Server with enhanced hints
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "includeInlayParameterNameHints": "all",
+          "includeInlayFunctionParameterTypeHints": true,
+          "includeInlayVariableTypeHints": true,
+          "includeInlayPropertyDeclarationTypeHints": true,
+          "includeInlayFunctionLikeReturnTypeHints": true
+        }
+      }
+    }
+  },
+
+  // Language-specific settings
+  "languages": {
+    "TypeScript": {
+      // "..." includes default language servers alongside Angular
+      "language_servers": ["angular", "typescript-language-server", "..."],
+      "tab_size": 2,
+      "formatter": [
+        {
+          "code_action": "source.fixAll.eslint"
+        },
+        {
+          "code_action": "source.organizeImports"
+        },
+        {
+          "external": {
+            "command": "prettier",
+            "arguments": ["--stdin-filepath", "{buffer_path}"]
+          }
+        }
+      ]
+    },
+    "JavaScript": {
+      "tab_size": 2,
+      "formatter": [
+        {
+          "code_action": "source.fixAll.eslint"
+        },
+        {
+          "code_action": "source.organizeImports"
+        },
+        {
+          "external": {
+            "command": "prettier",
+            "arguments": ["--stdin-filepath", "{buffer_path}"]
+          }
+        }
+      ]
+    },
+    "HTML": {
+      "language_servers": ["angular", "vscode-html-language-server", "..."],
+      "tab_size": 2,
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}", "--parser", "html"]
+        }
+      }
+    },
+    "JSON": {
+      "tab_size": 2,
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}", "--parser", "json"]
+        }
+      }
+    },
+    "SCSS": {
+      "tab_size": 2,
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}", "--parser", "scss"]
+        }
+      }
+    },
+    "CSS": {
+      "tab_size": 2,
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}", "--parser", "css"]
+        }
+      }
+    }
+  }
+}

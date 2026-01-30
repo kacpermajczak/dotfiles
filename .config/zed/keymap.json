@@ -1,0 +1,153 @@
+[
+  // ============================================
+  // Pane Navigation (Vim-style with Ctrl+hjkl)
+  // ============================================
+  {
+    "context": "Dock || Editor",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+
+  // ============================================
+  // Buffer Navigation (Tab switching)
+  // ============================================
+  {
+    "context": "Editor",
+    "bindings": {
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem"
+    }
+  },
+
+  // ============================================
+  // Leader Key Mappings (Space as leader)
+  // ============================================
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // File & Project Navigation
+      "space space": "file_finder::Toggle",
+      "space f p": "projects::OpenRecent",
+      "space f f": "file_finder::Toggle",
+      "space f r": "pane::ReopenClosedItem",
+
+      // Code Actions & LSP
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "space c f": "editor::Format",
+
+      // Toggle Features
+      "space t i": "editor::ToggleInlayHints",
+      "space t w": "editor::ToggleSoftWrap",
+
+      // Buffer Management
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseInactiveItems"
+    }
+  },
+
+  // ============================================
+  // LSP Navigation (Go To Definition, References)
+  // ============================================
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToTypeDefinition",
+      "g i": "editor::GoToImplementation",
+      "g r": "editor::FindAllReferences",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "shift-k": "editor::Hover"
+    }
+  },
+
+  // ============================================
+  // Git Hunks Navigation
+  // ============================================
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+      "space g h": "editor::ToggleSelectedDiffHunks"
+    }
+  },
+
+  // ============================================
+  // Project Panel File Operations
+  // ============================================
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "shift-a": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste"
+    }
+  },
+
+  // ============================================
+  // Subword Motion (camelCase/PascalCase aware)
+  // ============================================
+  {
+    "context": "VimControl && !menu && vim_mode != operator",
+    "bindings": {
+      "w": "vim::NextSubwordStart",
+      "b": "vim::PreviousSubwordStart",
+      "e": "vim::NextSubwordEnd",
+      "g e": "vim::PreviousSubwordEnd"
+    }
+  },
+
+  // ============================================
+  // Vim Sneak (Two-character search)
+  // ============================================
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward"
+    }
+  },
+
+
+  // ============================================
+  // Comment Toggle (gc in visual mode)
+  // ============================================
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "g c": "editor::ToggleComments"
+    }
+  },
+
+  // ============================================
+  // Cursor Wrapping (h/l wrap between lines)
+  // ============================================
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "h": "vim::WrappingLeft",
+      "l": "vim::WrappingRight"
+    }
+  },
+
+  // ============================================
+  // Search & Replace
+  // ============================================
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space s": "buffer_search::Deploy",
+      "space shift-s": "project_search::SearchInNew"
+    }
+  }
+]
