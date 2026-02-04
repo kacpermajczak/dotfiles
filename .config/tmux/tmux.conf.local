@@ -145,7 +145,10 @@ set -g history-limit 10000
 
 
 # status refresh interval (for CPU/RAM updates)
-set -g status-interval 10
+set -g status-interval 2
+
+# kill window with prefix + X (shift+x)
+bind X confirm-before -p "kill window #W? (y/n)" kill-window #!important
 
 # -- Catppuccin theme ----------------------------------------------------------
 
