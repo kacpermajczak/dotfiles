@@ -86,6 +86,7 @@ brew "openfortivpn"                 # FortiVPN client
 # ========================================
 brew "glances"                      # System monitoring tool
 brew "htop"                         # Interactive process viewer
+brew "tmux-mem-cpu-load"            # CPU/RAM status for tmux
 
 # ========================================
 # SSH Management
