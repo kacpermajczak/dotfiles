@@ -1,0 +1,4 @@
+# Workaround: tmux 3.6a doesn't forward Shift+Enter through extended-keys.
+# Send ESC+CR instead of CSI u sequence, which tmux passes through cleanly.
+# Fixed in tmux master (4f5d6d97) — remove this when tmux 3.7+ ships.
+keybind = shift+enter=text:\x1b\r

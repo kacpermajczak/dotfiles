@@ -140,6 +140,25 @@ tmux_conf_urlscan_options="--compact --dedupe"
 
 # this is the place to override or undo settings
 
+# Fix terminal type for synchronized output (fixes Claude Code flickering)
+set -g default-terminal "tmux-256color"
+
+# Enable synchronized output passthrough (DEC mode 2026)
+set -ga terminal-features ",alacritty:synchronize"
+set -ga terminal-features ",ghostty:synchronize"
+set -ga terminal-features ",xterm-ghostty:synchronize"
+set -ga terminal-features ",xterm-256color:synchronize"
+
+# Extended keys (kitty keyboard protocol) - for when tmux 3.7+ ships
+set -s extended-keys on
+set -as terminal-features ',ghostty:extkeys'
+set -as terminal-features ',xterm-ghostty:extkeys'
+
+# True color support
+set -ag terminal-overrides ",alacritty:RGB"
+set -ag terminal-overrides ",ghostty:RGB"
+set -ag terminal-overrides ",xterm-ghostty:RGB"
+
 # increase history size
 set -g history-limit 10000
 

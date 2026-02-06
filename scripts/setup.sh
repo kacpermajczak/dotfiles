@@ -3,6 +3,14 @@ set -e
 
 DOTFILES_DIR="$HOME/.dotfiles"
 
+install_claude_code() {
+  command -v claude >/dev/null 2>&1 && { echo "✓ Claude Code already installed"; return; }
+
+  echo "Installing Claude Code..."
+  curl -fsSL https://claude.ai/install.sh | bash
+  echo "✓ Claude Code installed"
+}
+
 init_homebrew_tap() {
   local tap_dir="$DOTFILES_DIR/homebrew-casks"
   [ -d "$tap_dir/.git" ] && return
@@ -20,11 +28,6 @@ install_homebrew_packages() {
   echo "Installing Homebrew packages..."
   brew bundle --file="$DOTFILES_DIR/Brewfile" || echo "⚠ Some Homebrew packages failed to install"
 
-  if command -v claude >/dev/null 2>&1; then
-    echo "✓ Claude Code installed"
-  else
-    echo "⚠️ Claude Code not found in PATH"
-  fi
 }
 
 install_ohmyzsh() {
@@ -48,7 +51,22 @@ install_zsh_plugins() {
   done
 }
 
+install_ghostty_terminfo() {
+  local src="/Applications/Ghostty.app/Contents/Resources/terminfo/78/xterm-ghostty"
+  local dest_dir="$HOME/.terminfo/78"
+
+  [ ! -f "$src" ] && { echo "⚠ Ghostty not installed, skipping terminfo"; return; }
+  [ -f "$dest_dir/xterm-ghostty" ] && { echo "✓ Ghostty terminfo already installed"; return; }
+
+  echo "Installing Ghostty terminfo..."
+  mkdir -p "$dest_dir"
+  cp "$src" "$dest_dir/xterm-ghostty"
+  echo "✓ Ghostty terminfo installed"
+}
+
+install_claude_code
 init_homebrew_tap
 install_homebrew_packages
 install_ohmyzsh
 install_zsh_plugins
+install_ghostty_terminfo
