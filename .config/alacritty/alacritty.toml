@@ -33,7 +33,7 @@ bindings = [
 option_as_alt = "Both"
 
 [env]
-TERM = "xterm-256color"
+TERM = "alacritty"
 
 [font]
 size = 14.0
