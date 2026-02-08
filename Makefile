@@ -127,7 +127,7 @@ claude-check:
 		test -L ~/.claude/statusline.sh && echo "$(GREEN)✓ statusline.sh symlink$(NC)" || echo "$(RED)✗ Missing statusline.sh symlink$(NC)"; \
 	else \
 		echo "$(RED)✗ Claude Code not installed$(NC)"; \
-		echo "Run 'make install' to install from Brewfile"; \
+		echo "Run './install' or 'curl -fsSL https://claude.ai/install.sh | bash'"; \
 		exit 1; \
 	fi
 
