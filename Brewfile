@@ -36,6 +36,7 @@ brew "argocd"                       # GitOps continuous delivery for Kubernetes
 brew "docker"                       # Container platform
 brew "helm"                         # Kubernetes package manager
 brew "k9s"                          # Kubernetes CLI management tool
+brew "kubectx"                      # Switch between Kubernetes contexts and namespaces
 brew "kubernetes-cli"               # kubectl command line tool
 brew "sentry-cli"                   # Sentry command line client
 
@@ -102,7 +103,6 @@ cask "alacritty"                    # GPU-accelerated terminal emulator
 cask "ghostty"                      # Fast, native terminal emulator
 
 # Development
-cask "claude-code"                  # AI-powered coding assistant
 cask "docker-desktop"               # Docker Desktop for Mac
 cask "webstorm"                     # JavaScript and TypeScript IDE
 cask "zed"                          # High-performance Rust-based code editor

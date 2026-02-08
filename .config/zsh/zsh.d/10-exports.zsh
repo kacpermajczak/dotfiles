@@ -9,8 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_COMPDUMP="$ZSH/cache/.zcompdump-$HOST"
 
 # Kubernetes
-# TODO: Make this machine-agnostic or move to 99-local.zsh
-export KUBECONFIG="$HOME/kubeconfig"
+export KUBECONFIG="$HOME/.kube/config"
 
 # Locale
 export LANG=en_US.UTF-8
