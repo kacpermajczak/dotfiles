@@ -19,3 +19,7 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew c
 
 # Claude Code
 alias cc='claude'
+
+# Kubernetes
+alias kx='kubectx'
+alias kn='kubens'
