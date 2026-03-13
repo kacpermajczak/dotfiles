@@ -103,6 +103,7 @@ cask "alacritty"                    # GPU-accelerated terminal emulator
 cask "ghostty"                      # Fast, native terminal emulator
 
 # Development
+cask "blender"                      # 3D creation suite
 cask "docker-desktop"               # Docker Desktop for Mac
 cask "webstorm"                     # JavaScript and TypeScript IDE
 cask "zed"                          # High-performance Rust-based code editor
