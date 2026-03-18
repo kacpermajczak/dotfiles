@@ -39,6 +39,7 @@ brew "k9s"                          # Kubernetes CLI management tool
 brew "kubectx"                      # Switch between Kubernetes contexts and namespaces
 brew "kubernetes-cli"               # kubectl command line tool
 brew "sentry-cli"                   # Sentry command line client
+brew "caddy"                        # Fast, multi-platform web server with automatic HTTPS
 
 # ========================================
 # CLI Utilities

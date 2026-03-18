@@ -18,7 +18,8 @@ alias lt='ls --tree'
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update'
 
 # Claude Code
-alias cc='claude'
+alias claude='claude --allow-dangerously-skip-permissions'
+alias cc='claude --allow-dangerously-skip-permissions'
 
 # tmux
 alias wm='workmux'
