@@ -176,7 +176,7 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "statusLine": {
-    "command": "bash ~/.claude/statusline.sh",
-    "type": "command"
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\""
   }
 }

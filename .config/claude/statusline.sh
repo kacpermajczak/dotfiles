@@ -1,223 +1,329 @@
 #!/bin/bash
+set -f
 
-# Combined Claude Code Status Line Script
-# Features: ccusage.com integration + custom Git status, environment info, mood assistant
-# Removes duplicates: token tracking, model display, session costs (handled by ccusage)
-
-# Configuration
-STATS_DIR="$HOME/.claude/statusline-stats"
-SESSION_FILE="$STATS_DIR/current-session.json"
-MOODS_FILE="$STATS_DIR/moods.json"
-
-# Create stats directory if needed
-mkdir -p "$STATS_DIR"
-
-# Read input data from stdin and store it
 input=$(cat)
 
-# Extract data from the JSON input
-current_dir=$(echo "$input" | jq -r '.workspace.current_dir')
-project_dir=$(echo "$input" | jq -r '.workspace.project_dir // .workspace.current_dir')
-output_style=$(echo "$input" | jq -r '.output_style.name // "default"')
-session_id=$(echo "$input" | jq -r '.session_id // "unknown"')
-transcript_path=$(echo "$input" | jq -r '.transcript_path // ""')
-
-# Get project name from project directory
-project_name=$(basename "$project_dir")
-
-# Initialize session tracking
-current_time=$(date +%s)
-init_session() {
-    echo "{\"session_id\":\"$session_id\",\"start_time\":$current_time,\"message_count\":0,\"last_response_time\":0}" > "$SESSION_FILE"
-}
-
-# Load or initialize session data
-if [ ! -f "$SESSION_FILE" ] || [ "$(jq -r '.session_id // ""' "$SESSION_FILE" 2>/dev/null)" != "$session_id" ]; then
-    init_session
+if [ -z "$input" ]; then
+    printf "Claude"
+    exit 0
 fi
 
-# Update session metrics
-session_data=$(cat "$SESSION_FILE" 2>/dev/null || echo '{}')
-start_time=$(echo "$session_data" | jq -r '.start_time // 0')
-message_count=$(echo "$session_data" | jq -r '.message_count // 0')
-last_response_time=$(echo "$session_data" | jq -r '.last_response_time // 0')
+# ── Colors ──────────────────────────────────────────────
+blue='\033[38;2;0;153;255m'
+orange='\033[38;2;255;176;85m'
+green='\033[38;2;0;175;80m'
+cyan='\033[38;2;86;182;194m'
+red='\033[38;2;255;85;85m'
+yellow='\033[38;2;230;200;0m'
+white='\033[38;2;220;220;220m'
+magenta='\033[38;2;180;140;255m'
+dim='\033[2m'
+reset='\033[0m'
 
-# Increment message count and update session file
-new_message_count=$((message_count + 1))
-echo "$session_data" | jq --arg count "$new_message_count" --arg time "$current_time" \
-    '.message_count = ($count | tonumber) | .last_response_time = ($time | tonumber)' > "$SESSION_FILE"
+sep=" ${dim}│${reset} "
 
-# Calculate session duration
-session_duration=$((current_time - start_time))
-session_minutes=$((session_duration / 60))
-session_seconds=$((session_duration % 60))
-
-# Get ccusage statusline (handles token tracking, model display, costs)
-get_ccusage_statusline() {
-    # Pass the input JSON to ccusage statusline command
-    ccusage_output=$(echo "$input" | bun x ccusage statusline 2>/dev/null)
-    if [ $? -eq 0 ] && [ -n "$ccusage_output" ]; then
-        echo "$ccusage_output"
+# ── Helpers ─────────────────────────────────────────────
+format_tokens() {
+    local num=$1
+    if [ "$num" -ge 1000000 ]; then
+        awk "BEGIN {printf \"%.1fm\", $num / 1000000}"
+    elif [ "$num" -ge 1000 ]; then
+        awk "BEGIN {printf \"%.0fk\", $num / 1000}"
     else
-        # Fallback if ccusage is not available
-        echo "\033[2;37mccusage unavailable\033[0m"
+        printf "%d" "$num"
     fi
 }
 
-# Mood assistant
-mood_assistant() {
-    # Simple sentiment analysis based on recent activity patterns
-    local mood_score=50  # neutral baseline
-    
-    # Analyze session activity (more messages = higher energy)
-    if [ $new_message_count -gt 20 ]; then
-        mood_score=$((mood_score + 20))
-    elif [ $new_message_count -gt 10 ]; then
-        mood_score=$((mood_score + 10))
-    fi
-    
-    # Session duration factor (longer sessions might indicate focus)
-    if [ $session_minutes -gt 60 ]; then
-        mood_score=$((mood_score + 15))
-    elif [ $session_minutes -gt 30 ]; then
-        mood_score=$((mood_score + 5))
-    fi
-    
-    # Time of day factor
-    hour=$(date +%H)
-    if [ $hour -ge 9 ] && [ $hour -le 17 ]; then
-        mood_score=$((mood_score + 5))  # work hours
-    elif [ $hour -ge 22 ] || [ $hour -le 6 ]; then
-        mood_score=$((mood_score - 10))  # late/early hours
-    fi
-    
-    # Generate mood message
-    if [ $mood_score -ge 80 ]; then
-        printf "\033[1;32m🚀 Produktywnie!\033[0m"
-    elif [ $mood_score -ge 65 ]; then
-        printf "\033[1;36m✨ Świetnie!\033[0m"
-    elif [ $mood_score -ge 50 ]; then
-        printf "\033[1;37m⚡ W rytmie\033[0m"
-    elif [ $mood_score -ge 35 ]; then
-        printf "\033[1;33m☕ Czas na kawę\033[0m"
-    else
-        printf "\033[1;35m🌙 Odpoczynek?\033[0m"
+color_for_pct() {
+    local pct=$1
+    if [ "$pct" -ge 90 ]; then printf "$red"
+    elif [ "$pct" -ge 70 ]; then printf "$yellow"
+    elif [ "$pct" -ge 50 ]; then printf "$orange"
+    else printf "$green"
     fi
 }
 
-# Response time tracking
-response_time_ms=0
-if [ $last_response_time -gt 0 ]; then
-    response_time_ms=$(((current_time - last_response_time) * 1000))
-    if [ $response_time_ms -gt 5000 ]; then
-        response_display=$(printf "\033[1;31m%.1fs\033[0m" $((response_time_ms / 1000)))
-    elif [ $response_time_ms -gt 2000 ]; then
-        response_display=$(printf "\033[1;33m%.1fs\033[0m" $((response_time_ms / 1000)))
-    else
-        response_display=$(printf "\033[1;32m%.1fs\033[0m" $((response_time_ms / 1000)))
+build_bar() {
+    local pct=$1
+    local width=$2
+    [ "$pct" -lt 0 ] 2>/dev/null && pct=0
+    [ "$pct" -gt 100 ] 2>/dev/null && pct=100
+
+    local filled=$(( pct * width / 100 ))
+    local empty=$(( width - filled ))
+    local bar_color
+    bar_color=$(color_for_pct "$pct")
+
+    local filled_str="" empty_str=""
+    for ((i=0; i<filled; i++)); do filled_str+="●"; done
+    for ((i=0; i<empty; i++)); do empty_str+="○"; done
+
+    printf "${bar_color}${filled_str}${dim}${empty_str}${reset}"
+}
+
+iso_to_epoch() {
+    local iso_str="$1"
+
+    local epoch
+    epoch=$(date -d "${iso_str}" +%s 2>/dev/null)
+    if [ -n "$epoch" ]; then
+        echo "$epoch"
+        return 0
     fi
+
+    local stripped="${iso_str%%.*}"
+    stripped="${stripped%%Z}"
+    stripped="${stripped%%+*}"
+    stripped="${stripped%%-[0-9][0-9]:[0-9][0-9]}"
+
+    if [[ "$iso_str" == *"Z"* ]] || [[ "$iso_str" == *"+00:00"* ]] || [[ "$iso_str" == *"-00:00"* ]]; then
+        epoch=$(env TZ=UTC date -j -f "%Y-%m-%dT%H:%M:%S" "$stripped" +%s 2>/dev/null)
+    else
+        epoch=$(date -j -f "%Y-%m-%dT%H:%M:%S" "$stripped" +%s 2>/dev/null)
+    fi
+
+    if [ -n "$epoch" ]; then
+        echo "$epoch"
+        return 0
+    fi
+
+    return 1
+}
+
+format_reset_time() {
+    local iso_str="$1"
+    local style="$2"
+    [ -z "$iso_str" ] || [ "$iso_str" = "null" ] && return
+
+    local epoch
+    epoch=$(iso_to_epoch "$iso_str")
+    [ -z "$epoch" ] && return
+
+    local result=""
+    case "$style" in
+        time)
+            result=$(date -j -r "$epoch" +"%l:%M%p" 2>/dev/null | sed 's/^ //; s/\.//g' | tr '[:upper:]' '[:lower:]')
+            [ -z "$result" ] && result=$(date -d "@$epoch" +"%l:%M%P" 2>/dev/null | sed 's/^ //; s/\.//g')
+            ;;
+        datetime)
+            result=$(date -j -r "$epoch" +"%b %-d, %l:%M%p" 2>/dev/null | sed 's/  / /g; s/^ //; s/\.//g' | tr '[:upper:]' '[:lower:]')
+            [ -z "$result" ] && result=$(date -d "@$epoch" +"%b %-d, %l:%M%P" 2>/dev/null | sed 's/  / /g; s/^ //; s/\.//g')
+            ;;
+        *)
+            result=$(date -j -r "$epoch" +"%b %-d" 2>/dev/null | tr '[:upper:]' '[:lower:]')
+            [ -z "$result" ] && result=$(date -d "@$epoch" +"%b %-d" 2>/dev/null)
+            ;;
+    esac
+    printf "%s" "$result"
+}
+
+# ── Extract JSON data ───────────────────────────────────
+model_name=$(echo "$input" | jq -r '.model.display_name // "Claude"')
+
+size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
+[ "$size" -eq 0 ] 2>/dev/null && size=200000
+
+input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // 0')
+cache_create=$(echo "$input" | jq -r '.context_window.current_usage.cache_creation_input_tokens // 0')
+cache_read=$(echo "$input" | jq -r '.context_window.current_usage.cache_read_input_tokens // 0')
+current=$(( input_tokens + cache_create + cache_read ))
+
+used_tokens=$(format_tokens $current)
+total_tokens=$(format_tokens $size)
+
+if [ "$size" -gt 0 ]; then
+    pct_used=$(( current * 100 / size ))
 else
-    response_display="\033[2;37m--\033[0m"
+    pct_used=0
 fi
 
-# Git status information with change count
-git_info=""
-if cd "$current_dir" 2>/dev/null && git rev-parse --git-dir >/dev/null 2>&1; then
-    branch_name=$(git branch --show-current 2>/dev/null || git rev-parse --short HEAD 2>/dev/null || echo "detached")
-    
-    # Sanitize branch name for display (escape any problematic characters)
-    branch_name=$(printf '%s' "$branch_name" | tr -d '\n\r')
-    
-    # Count changed files (staged + unstaged)
-    changed_files=$(git status --porcelain 2>/dev/null | wc -l | xargs)
-    
-    # Check if there are any changes
-    if [ "$changed_files" -gt 0 ]; then
-        git_info=$(printf " \033[1;31m%s\033[0m \033[1;33m±%s\033[0m" "$branch_name" "$changed_files")
-    else
-        git_info=$(printf " \033[1;32m%s\033[0m \033[2;32m✓\033[0m" "$branch_name")
+effort="default"
+settings_path="$HOME/.claude/settings.json"
+if [ -f "$settings_path" ]; then
+    effort=$(jq -r '.effortLevel // "default"' "$settings_path" 2>/dev/null)
+fi
+
+# ── LINE 1: Model │ Context % │ Directory (branch) │ Session │ Thinking ──
+pct_color=$(color_for_pct "$pct_used")
+cwd=$(echo "$input" | jq -r '.cwd // ""')
+[ -z "$cwd" ] || [ "$cwd" = "null" ] && cwd=$(pwd)
+dirname=$(basename "$cwd")
+
+git_branch=""
+git_dirty=""
+if git -C "$cwd" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    git_branch=$(git -C "$cwd" symbolic-ref --short HEAD 2>/dev/null)
+    if [ -n "$(git -C "$cwd" status --porcelain 2>/dev/null)" ]; then
+        git_dirty="*"
     fi
 fi
 
-# Environment detection
-env_info=""
-
-# Python virtual environment
-if [ -n "$VIRTUAL_ENV" ]; then
-    venv_name=$(basename "$VIRTUAL_ENV")
-    python_version=$(python --version 2>/dev/null | cut -d' ' -f2 | cut -d'.' -f1-2)
-    if [ -n "$python_version" ] && [ -n "$venv_name" ]; then
-        env_info=$(printf "%s \033[1;36mpy:%s(%s)\033[0m" "$env_info" "$python_version" "$venv_name")
+session_duration=""
+session_start=$(echo "$input" | jq -r '.session.start_time // empty')
+if [ -n "$session_start" ] && [ "$session_start" != "null" ]; then
+    start_epoch=$(iso_to_epoch "$session_start")
+    if [ -n "$start_epoch" ]; then
+        now_epoch=$(date +%s)
+        elapsed=$(( now_epoch - start_epoch ))
+        if [ "$elapsed" -ge 3600 ]; then
+            session_duration="$(( elapsed / 3600 ))h$(( (elapsed % 3600) / 60 ))m"
+        elif [ "$elapsed" -ge 60 ]; then
+            session_duration="$(( elapsed / 60 ))m"
+        else
+            session_duration="${elapsed}s"
+        fi
     fi
 fi
 
-# Node.js version (if package.json exists)
-if [ -f "$current_dir/package.json" ]; then
-    node_version=$(node --version 2>/dev/null | sed 's/^v//')
-    if [ -n "$node_version" ]; then
-        env_info=$(printf "%s \033[1;35mnode:%s\033[0m" "$env_info" "$node_version")
-    fi
+line1="${blue}${model_name}${reset}"
+line1+="${sep}"
+line1+="✍️ ${pct_color}${pct_used}%${reset}"
+line1+="${sep}"
+line1+="${cyan}${dirname}${reset}"
+if [ -n "$git_branch" ]; then
+    line1+=" ${green}(${git_branch}${red}${git_dirty}${green})${reset}"
 fi
-
-# Go version (if go.mod exists)
-if [ -f "$current_dir/go.mod" ]; then
-    go_version=$(go version 2>/dev/null | awk '{print $3}' | sed 's/^go//')
-    if [ -n "$go_version" ]; then
-        env_info=$(printf "%s \033[1;34mgo:%s\033[0m" "$env_info" "$go_version")
-    fi
+if [ -n "$session_duration" ]; then
+    line1+="${sep}"
+    line1+="${dim}⏱ ${reset}${white}${session_duration}${reset}"
 fi
-
-# Work mode indicator based on output style
-mode_indicator=""
-case "$output_style" in
-    "Explanatory")
-        mode_indicator=$(printf " \033[1;42m LEARN \033[0m")
-        ;;
-    "Learning")
-        mode_indicator=$(printf " \033[1;43m TEACH \033[0m")
-        ;;
-    "default")
-        mode_indicator=$(printf " \033[1;44m CODE \033[0m")
-        ;;
-    *)
-        mode_indicator=$(printf " \033[1;46m %s \033[0m" "$output_style")
-        ;;
+line1+="${sep}"
+case "$effort" in
+    high)   line1+="${magenta}● ${effort}${reset}" ;;
+    medium) line1+="${dim}◑ ${effort}${reset}" ;;
+    low)    line1+="${dim}◔ ${effort}${reset}" ;;
+    *)      line1+="${dim}◑ ${effort}${reset}" ;;
 esac
 
-# Relative path from project root
-if [ "$current_dir" != "$project_dir" ]; then
-    # Use parameter expansion to safely remove project_dir prefix
-    rel_path="${current_dir#$project_dir}"
-    rel_path="${rel_path#/}"  # Remove leading slash if present
-    if [ -n "$rel_path" ]; then
-        path_display="${project_name}/\033[2;37m${rel_path}\033[0m"
-    else
-        path_display="$project_name"
+# ── OAuth token resolution ──────────────────────────────
+get_oauth_token() {
+    local token=""
+
+    if [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+        echo "$CLAUDE_CODE_OAUTH_TOKEN"
+        return 0
     fi
-else
-    path_display="$project_name"
+
+    if command -v security >/dev/null 2>&1; then
+        local blob
+        blob=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null)
+        if [ -n "$blob" ]; then
+            token=$(echo "$blob" | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+            if [ -n "$token" ] && [ "$token" != "null" ]; then
+                echo "$token"
+                return 0
+            fi
+        fi
+    fi
+
+    local creds_file="${HOME}/.claude/.credentials.json"
+    if [ -f "$creds_file" ]; then
+        token=$(jq -r '.claudeAiOauth.accessToken // empty' "$creds_file" 2>/dev/null)
+        if [ -n "$token" ] && [ "$token" != "null" ]; then
+            echo "$token"
+            return 0
+        fi
+    fi
+
+    if command -v secret-tool >/dev/null 2>&1; then
+        local blob
+        blob=$(timeout 2 secret-tool lookup service "Claude Code-credentials" 2>/dev/null)
+        if [ -n "$blob" ]; then
+            token=$(echo "$blob" | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+            if [ -n "$token" ] && [ "$token" != "null" ]; then
+                echo "$token"
+                return 0
+            fi
+        fi
+    fi
+
+    echo ""
+}
+
+# ── Fetch usage data (cached) ──────────────────────────
+cache_file="/tmp/claude/statusline-usage-cache.json"
+cache_max_age=60
+mkdir -p /tmp/claude
+
+needs_refresh=true
+usage_data=""
+
+if [ -f "$cache_file" ]; then
+    cache_mtime=$(stat -c %Y "$cache_file" 2>/dev/null || stat -f %m "$cache_file" 2>/dev/null)
+    now=$(date +%s)
+    cache_age=$(( now - cache_mtime ))
+    if [ "$cache_age" -lt "$cache_max_age" ]; then
+        needs_refresh=false
+        usage_data=$(cat "$cache_file" 2>/dev/null)
+    fi
 fi
 
-# Work metrics display (message counter and response times)
-work_metrics=$(printf "\033[1;94m#%d\033[0m \033[1;37m%02d:%02d\033[0m %s" \
-    "$new_message_count" \
-    "$session_minutes" \
-    "$session_seconds" \
-    "$response_display")
+if $needs_refresh; then
+    token=$(get_oauth_token)
+    if [ -n "$token" ] && [ "$token" != "null" ]; then
+        response=$(curl -s --max-time 5 \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $token" \
+            -H "anthropic-beta: oauth-2025-04-20" \
+            -H "User-Agent: claude-code/2.1.34" \
+            "https://api.anthropic.com/api/oauth/usage" 2>/dev/null)
+        if [ -n "$response" ] && echo "$response" | jq -e '.five_hour' >/dev/null 2>&1; then
+            usage_data="$response"
+            echo "$response" > "$cache_file"
+        fi
+    fi
+    if [ -z "$usage_data" ] && [ -f "$cache_file" ]; then
+        usage_data=$(cat "$cache_file" 2>/dev/null)
+    fi
+fi
 
-# Get ccusage statusline
-ccusage_display=$(get_ccusage_statusline)
+# ── Rate limit lines ────────────────────────────────────
+rate_lines=""
 
-# Mood assistant display
-mood_display=$(mood_assistant)
+if [ -n "$usage_data" ] && echo "$usage_data" | jq -e . >/dev/null 2>&1; then
+    bar_width=10
 
-# Generate combined status line:
-# [PROJECT/path] git_info | ccusage_output | msg# time response | env | mood | MODE
-printf "\033[1;37m[\033[0m\033[1;33m%s\033[0m\033[1;37m]\033[0m%s \033[1;90m|\033[0m %s \033[1;90m|\033[0m %s%s \033[1;90m|\033[0m %s%s\n" \
-    "$path_display" \
-    "$git_info" \
-    "$ccusage_display" \
-    "$work_metrics" \
-    "$env_info" \
-    "$mood_display" \
-    "$mode_indicator"
+    five_hour_pct=$(echo "$usage_data" | jq -r '.five_hour.utilization // 0' | awk '{printf "%.0f", $1}')
+    five_hour_reset_iso=$(echo "$usage_data" | jq -r '.five_hour.resets_at // empty')
+    five_hour_reset=$(format_reset_time "$five_hour_reset_iso" "time")
+    five_hour_bar=$(build_bar "$five_hour_pct" "$bar_width")
+    five_hour_pct_color=$(color_for_pct "$five_hour_pct")
+    five_hour_pct_fmt=$(printf "%3d" "$five_hour_pct")
+
+    rate_lines+="${white}current${reset} ${five_hour_bar} ${five_hour_pct_color}${five_hour_pct_fmt}%${reset} ${dim}⟳${reset} ${white}${five_hour_reset}${reset}"
+
+    seven_day_pct=$(echo "$usage_data" | jq -r '.seven_day.utilization // 0' | awk '{printf "%.0f", $1}')
+    seven_day_reset_iso=$(echo "$usage_data" | jq -r '.seven_day.resets_at // empty')
+    seven_day_reset=$(format_reset_time "$seven_day_reset_iso" "datetime")
+    seven_day_bar=$(build_bar "$seven_day_pct" "$bar_width")
+    seven_day_pct_color=$(color_for_pct "$seven_day_pct")
+    seven_day_pct_fmt=$(printf "%3d" "$seven_day_pct")
+
+    rate_lines+="\n${white}weekly${reset}  ${seven_day_bar} ${seven_day_pct_color}${seven_day_pct_fmt}%${reset} ${dim}⟳${reset} ${white}${seven_day_reset}${reset}"
+
+    extra_enabled=$(echo "$usage_data" | jq -r '.extra_usage.is_enabled // false')
+    if [ "$extra_enabled" = "true" ]; then
+        extra_pct=$(echo "$usage_data" | jq -r '.extra_usage.utilization // 0' | awk '{printf "%.0f", $1}')
+        extra_used=$(echo "$usage_data" | jq -r '.extra_usage.used_credits // 0' | awk '{printf "%.2f", $1/100}')
+        extra_limit=$(echo "$usage_data" | jq -r '.extra_usage.monthly_limit // 0' | awk '{printf "%.2f", $1/100}')
+        extra_bar=$(build_bar "$extra_pct" "$bar_width")
+        extra_pct_color=$(color_for_pct "$extra_pct")
+
+        extra_reset=$(date -v+1m -v1d +"%b %-d" 2>/dev/null | tr '[:upper:]' '[:lower:]')
+        if [ -z "$extra_reset" ]; then
+            extra_reset=$(date -d "$(date +%Y-%m-01) +1 month" +"%b %-d" 2>/dev/null | tr '[:upper:]' '[:lower:]')
+        fi
+
+        extra_col="${white}extra${reset}   ${extra_bar} ${extra_pct_color}\$${extra_used}${dim}/${reset}${white}\$${extra_limit}${reset}"
+        extra_reset_line="${dim}resets ${reset}${white}${extra_reset}${reset}"
+        rate_lines+="\n${extra_col}"
+        rate_lines+="\n${extra_reset_line}"
+    fi
+fi
+
+# ── Output ──────────────────────────────────────────────
+printf "%b" "$line1"
+[ -n "$rate_lines" ] && printf "\n\n%b" "$rate_lines"
+
+exit 0
