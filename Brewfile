@@ -126,7 +126,7 @@ cask "monitorcontrol"               # Control external monitor brightness
 cask "rectangle"                    # Window management with keyboard shortcuts
 
 # Printers
-cask "samsung-printer-driver"       # Samsung Universal Print Driver (C410, C43x, M2020)
+#cask "samsung-printer-driver"       # Samsung Universal Print Driver (C410, C43x, M2020)
 
 # Office
 cask "libreoffice"                  # Free office suite
