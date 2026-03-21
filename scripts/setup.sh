@@ -11,6 +11,14 @@ install_claude_code() {
   echo "✓ Claude Code installed"
 }
 
+install_workmux() {
+  command -v workmux >/dev/null 2>&1 && { echo "✓ workmux already installed"; return; }
+
+  echo "Installing workmux..."
+  curl -fsSL https://raw.githubusercontent.com/raine/workmux/main/scripts/install.sh | bash
+  echo "✓ workmux installed"
+}
+
 init_homebrew_tap() {
   local tap_dir="$DOTFILES_DIR/homebrew-casks"
   [ -d "$tap_dir/.git" ] && return
@@ -65,6 +73,7 @@ install_ghostty_terminfo() {
 }
 
 install_claude_code
+install_workmux
 init_homebrew_tap
 install_homebrew_packages
 install_ohmyzsh

@@ -1,7 +1,7 @@
 # Dotfiles Makefile
 # Simplified commands for managing dotfiles and Homebrew packages
 
-.PHONY: help install update brew-install brew-check brew-update brew-cleanup git-status git-push clean claude-check
+.PHONY: help install update brew-install brew-check brew-update brew-cleanup git-status git-push clean claude-check workmux-check
 
 # Colors for output
 BLUE := \033[0;34m
@@ -30,6 +30,7 @@ help:
 	@echo ""
 	@echo "$(GREEN)Verification:$(NC)"
 	@echo "  make claude-check   - Verify Claude Code installation and configuration"
+	@echo "  make workmux-check  - Verify workmux installation"
 	@echo ""
 	@echo "$(GREEN)Maintenance:$(NC)"
 	@echo "  make clean          - Remove backup files and caches"
@@ -128,6 +129,18 @@ claude-check:
 	else \
 		echo "$(RED)✗ Claude Code not installed$(NC)"; \
 		echo "Run './install' or 'curl -fsSL https://claude.ai/install.sh | bash'"; \
+		exit 1; \
+	fi
+
+## workmux-check: Verify workmux installation
+workmux-check:
+	@echo "$(BLUE)Checking workmux installation...$(NC)"
+	@if command -v workmux >/dev/null 2>&1; then \
+		echo "$(GREEN)✓ workmux installed$(NC)"; \
+		workmux --version; \
+	else \
+		echo "$(RED)✗ workmux not installed$(NC)"; \
+		echo "Run './install' or 'curl -fsSL https://raw.githubusercontent.com/raine/workmux/main/scripts/install.sh | bash'"; \
 		exit 1; \
 	fi
 
