@@ -25,3 +25,6 @@ Brewfile.lock.json
 # Zsh history and tmux runtime files (machine-specific)
 .config/zsh/.zsh_history
 .config/tmux/plugins/
+
+# Tmux verbose debug logs (created by tmux -v)
+tmux-*.log
