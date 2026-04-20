@@ -56,6 +56,8 @@ brew "ripgrep"                      # Fast grep alternative (rg)
 brew "yq"                           # YAML processor
 brew "tree"                         # Display directories as trees
 brew "visidata"                     # Terminal spreadsheet multitool
+brew "googleworkspace-cli"          # Google Workspace CLI (Gmail, Drive, Calendar, etc.)
+cask "google-cloud-sdk"             # Google Cloud SDK (gcloud CLI)
 
 # ========================================
 # Shell & Terminal
