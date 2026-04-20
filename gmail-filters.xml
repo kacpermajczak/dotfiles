@@ -1,0 +1,477 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+
+  <!-- KUPONY: Pepper -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='noreply@pepper.pl'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Allegro newslettery + promo -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='hello@newsletter.allegro.pl OR ulubione@allegro.pl OR powiadomienia@allegropay.pl'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Zalando Lounge (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='message@lounge.zalando.pl'/>
+    <apps:property name='label' value='Kupony/Zalando Lounge'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Lidl Plus (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='news@mail.lidlplus.pl OR info@mail.lidlplus.pl'/>
+    <apps:property name='label' value='Kupony/Lidl Plus'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Manning Publications (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='mkt@manning.com'/>
+    <apps:property name='label' value='Kupony/Manning Publications'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: IKEA Family (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='ikea@news.email.ikea.pl'/>
+    <apps:property name='label' value='Kupony/IKEA Family'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Glovo (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='toktok@info.glovoapp.com'/>
+    <apps:property name='label' value='Kupony/Jedzenie/Glovo'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Pozostale sklepy -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='newsletter@klubccc.eu OR info@alerabat.com OR biuro@kuchniavikinga.pl OR noreply@velobank.pl OR news@recepta-marihuana.pl'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Reolink + CANAL+ -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='newsletter@news.reolinksupport.com OR canalplus@pl-mail.canalplus.com'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- SOCIAL: Instagram + LinkedIn -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='no-reply@mail.instagram.com OR messages-noreply@linkedin.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Bryan Johnson / Blueprint -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='hello@bryanjohnson.com'/>
+    <apps:property name='label' value='Newsletter/Bryan Johnson'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Angular Architects (Manfred Steyer) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='manfred.steyer@angulararchitects.io'/>
+    <apps:property name='label' value='Newsletter/Angular Architects'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Chris Richardson / Microservices.io -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='chris@chrisrichardson.net'/>
+    <apps:property name='label' value='Newsletter/Chris Richardson'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Symfony -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='eloise.charrier@symfony.com'/>
+    <apps:property name='label' value='Newsletter/Symfony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Szkola Dockera (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='damian@szkoladockera.pl'/>
+    <apps:property name='label' value='Newsletter/szkoladockera.pl'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Bogusz Pekalski (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='bogusz@startupmyway.com'/>
+    <apps:property name='label' value='Newsletter/Bogusz Pękalski'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Andrew Tate (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='tate@cobratate.com'/>
+    <apps:property name='label' value='Newsletter/Andrew Tate'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Maciej Aniserowicz / devstyle (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='news@devstyle.pl'/>
+    <apps:property name='label' value='Newsletter/Maciej Aniserowicz/DNA'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Medium Digest (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='noreply@medium.com'/>
+    <apps:property name='label' value='Newsletter/Medium Daily Digest'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Substack (IT Tech crypto) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='ittechpl@substack.com'/>
+    <apps:property name='label' value='Newsletter/Instytut Kryptografii'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: YCA dog course -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='jacob@email.yorkshirecanineacademy.co.uk'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- PRACA: ClickUp -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='notifications@tasks.clickup.com'/>
+    <apps:property name='label' value='Praca/ClickUp'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- PRACA: Sentry -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='sentry@mail.kg-infra.com'/>
+    <apps:property name='label' value='Praca/Sentry'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Allegro Lokalnie -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='powiadomienia@allegrolokalnie.pl'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Profil Zaufany -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='powiadomienia@pz.gov.pl'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- UPDATES: AliExpress -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='transaction@notice.aliexpress.com OR notice@info.aliexpress.com OR aliexpress@notice.aliexpress.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Tailscale, Coursera, Nextbike, glo, NordVPN -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='hello@tailscale.com OR Coursera@m.learn.coursera.org OR info@nextbike.pl OR mail@mail.glo.pl OR no-reply@mail.nordvpn.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- UPDATES: XTB -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='pomoc@xtb.pl'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: OCHNIK -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='news@kko.ochnik.com'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- GAMING: CD Projekt RED -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='noreply@cdprojektred.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Cinema City -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='noreply@mail.cinema-city.pl'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Booking.com promo -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='email.campaign@sg.booking.com'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Bolt (istniejaca etykieta) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='poland@rides-promotions.bolt.eu'/>
+    <apps:property name='label' value='Kupony/Bolt'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: ZEN.COM -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='hi@zen.com'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Fakturownia promo -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='produkt@fakturownia.pl'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Electrolux -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='identity@electrolux.com OR electrolux@info.electrolux.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: LG Electronics -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='noreply-lgelectronics-pl_pl@bazaarvoice-cgc.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Procesy Jutra (Maciej Aniserowicz) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='maciej@procesyjutra.pl'/>
+    <apps:property name='label' value='Newsletter/Maciej Aniserowicz'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Soft Skille Dla Programistow -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='kontakt@softskilledlaprogramistow.pl'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: AI_devs -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='kontakt@aidevs.pl'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Akademia SaaS -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='kontakt@akademiasaas.pl'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: BRAVE courses -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='contact@brave.courses'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: wkontenerach.pl (drugi adres Damiana) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='info@wkontenerach.pl'/>
+    <apps:property name='label' value='Newsletter/szkoladockera.pl'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: Jakub Mrugalski (istniejaca etykieta, brakowal filtr) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='newsy@mrugalski.pl'/>
+    <apps:property name='label' value='Newsletter/Jakub Mrugalski/Unknow News'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: XTB (drugi adres) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='support@mail.xtb.com'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: AliExpress Customer Service (dodatkowy adres) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='AEbuyerservice@aliexpress.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Meetup -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='gdglublin-announce@email.meetup.com'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Glassdoor -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='noreply@glassdoor.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- UPDATES: JustJoin.it -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='jobs@hello.justjoin.it'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Google Search Console -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='sc-noreply@google.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Claude Team -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='no-reply@email.claude.com'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Revolut -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='no-reply@revolut.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Poczta Polska -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='informacja@poczta-polska.pl'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: ANNKE Support -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='support@annke.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- SOCIAL: Instagram priority (drugi adres) -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='notification@priority.instagram.com'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Decathlon -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='reply@email.decathlon.pl OR noreply-pl@service.decathlon.com'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: InPost promo -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='sprawdz@inpost.pl'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- KUPONY: Ryanair promo -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='service@service.ryanairemail.pl'/>
+    <apps:property name='label' value='Kupony'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- NEWSLETTER: j-labs -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='marketing@j-labs.pl'/>
+    <apps:property name='label' value='Newsletter'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- UPDATES: Ceneo -->
+  <entry>
+    <title>Mail Filter</title>
+    <apps:property name='from' value='informacja@ceneo.pl'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='shouldMarkAsRead' value='true'/>
+  </entry>
+
+</feed>

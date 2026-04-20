@@ -1,3 +1,22 @@
+## Gmail i zarządzanie skrzynką
+
+**Zasady:**
+- NIGDY nie usuwaj maili — zawsze archiwizuj
+- Gmail MCP jest read-only: możesz szukać, czytać, listować — nie możesz archiwizować ani aplikować etykiet
+- Akcje na skrzynce (archiwizacja, filtry, etykiety) wykonuje user ręcznie lub przez skrypty
+
+**Skille do użytku:**
+- `/email-analyze` — jednorazowa głęboka analiza skrzynki → generuje strukturę etykiet + plik XML z filtrami do importu
+- `/email-triage` — codzienny triage: co wymaga uwagi dziś
+- `/email-cleanup` — ad-hoc: znajdź kandydatów do archiwizacji + gotowe filter strings
+
+**Kiedy używać:**
+- User pyta "co mam w skrzynce" / "co ważnego" → `/email-triage`
+- User chce ogarnąć bałagan, skonfigurować filtry → `/email-analyze`
+- User chce wyczyścić konkretną kategorię (promo, social) → `/email-cleanup`
+
+**Styl raportów:** po polsku, bullet-pointy, bez lania wody
+
 - try to avoid using setTimeout
 - uzywaj chrome-devtools mcp do testowania strony
 - use Animate UI (https://animate-ui.com/) instead of regular shadcn for UI components
