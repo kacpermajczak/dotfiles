@@ -13,6 +13,7 @@
 # ========================================
 tap "adembc/tap"
 tap "oven-sh/bun"
+tap "hashicorp/tap"
 tap "kacper/casks", "#{Dir.home}/.dotfiles/homebrew-casks"
 
 # ========================================
@@ -40,6 +41,7 @@ brew "kubectx"                      # Switch between Kubernetes contexts and nam
 brew "kubernetes-cli"               # kubectl command line tool
 brew "sentry-cli"                   # Sentry command line client
 brew "caddy"                        # Fast, multi-platform web server with automatic HTTPS
+brew "hashicorp/tap/vault"          # HashiCorp Vault CLI - secrets management
 
 # ========================================
 # CLI Utilities
@@ -106,6 +108,7 @@ cask "alacritty"                    # GPU-accelerated terminal emulator
 cask "ghostty"                      # Fast, native terminal emulator
 
 # Development
+cask "bambu-studio"                 # 3D model slicing software for Bambu Lab printers
 cask "blender"                      # 3D creation suite
 cask "docker-desktop"               # Docker Desktop for Mac
 cask "webstorm"                     # JavaScript and TypeScript IDE
