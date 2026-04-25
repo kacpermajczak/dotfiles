@@ -14,6 +14,7 @@
 tap "adembc/tap"
 tap "oven-sh/bun"
 tap "hashicorp/tap"
+tap "raine/workmux"
 tap "kacper/casks", "#{Dir.home}/.dotfiles/homebrew-casks"
 
 # ========================================
@@ -65,6 +66,7 @@ cask "google-cloud-sdk"             # Google Cloud SDK (gcloud CLI)
 # Shell & Terminal
 # ========================================
 brew "tmux"                         # Terminal multiplexer
+brew "raine/workmux/workmux"        # Orchestrate git worktrees and tmux windows for parallel Claude Code agents
 brew "zoxide"                       # Smarter cd command
 
 # ========================================

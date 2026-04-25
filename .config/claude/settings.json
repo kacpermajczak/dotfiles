@@ -192,5 +192,6 @@
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "editorMode": "vim",
-  "verbose": true
+  "verbose": true,
+  "skipAutoPermissionPrompt": true
 }
